@@ -6,7 +6,7 @@ on:
 
 jobs:
   unzip-files:
-    runs-size: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v4
@@ -31,4 +31,3 @@ jobs:
             git commit -m "Automated unzip of repository files"
             git push
           fi
-          
