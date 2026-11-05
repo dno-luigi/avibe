@@ -2,7 +2,7 @@ name: Auto Unzip Repository Information
 on:
   push:
     paths:
-      - '*.zip'  # Runs whenever a .zip file is uploaded
+      - '*.zip'
 
 jobs:
   unzip-files:
@@ -13,7 +13,6 @@ jobs:
 
       - name: Extract ZIP contents
         run: |
-          # Finds your zip file, unzips it into the repository root, and removes the raw zip
           ZIP_FILE=$(ls *.zip | head -n 1)
           if [ -f "$ZIP_FILE" ]; then
             unzip -o "$ZIP_FILE" -d .
