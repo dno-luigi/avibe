@@ -1,0 +1,34 @@
+name: Auto Unzip Repository Information
+on:
+  push:
+    paths:
+      - '*.zip'  # Runs whenever a .zip file is uploaded
+
+jobs:
+  unzip-files:
+    runs-size: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Extract ZIP contents
+        run: |
+          # Finds your zip file, unzips it into the repository root, and removes the raw zip
+          ZIP_FILE=$(ls *.zip | head -n 1)
+          if [ -f "$ZIP_FILE" ]; then
+            unzip -o "$ZIP_FILE" -d .
+            rm "$ZIP_FILE"
+          fi
+
+      - name: Commit and push extracted files back to repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@://github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Automated unzip of repository files"
+            git push
+          fi
+          
