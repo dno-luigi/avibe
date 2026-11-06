@@ -1,0 +1,21 @@
+{
+  "tables": [
+    {
+      "name": "sites",
+      "access": "community",
+      "columns": [
+        { "name": "name", "type": "text" },
+        { "name": "slug", "type": "text" },
+        { "name": "markdown", "type": "text" },
+        { "name": "html", "type": "text" },
+        { "name": "css", "type": "text" },
+        { "name": "vibe", "type": "text" },
+        { "name": "tokens", "type": "json" },
+        { "name": "output", "type": "text" },
+        { "name": "size_kb", "type": "number" },
+        { "name": "status", "type": "text" },
+        { "name": "published_at", "type": "timestamp" }
+      ]
+    }
+  ]
+}

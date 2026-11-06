@@ -1,0 +1,97 @@
+html { background: #0B0D10; }
+body { font-weight: 430; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+/* Luminous green insertion caret everywhere text is typed (pointer stays standard) */
+input, textarea, [contenteditable="true"] { caret-color: #2DD4A3; }
+
+/* Bright green focus ring, 2px offset */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid #2DD4A3;
+  outline-offset: 2px;
+}
+
+::selection { background: rgba(45, 212, 163, 0.28); color: #EEF2F6; }
+
+/* Thin dark scrollbars for panes */
+.pane-scroll { scrollbar-width: thin; scrollbar-color: #28313B transparent; }
+
+/* A pulsing code caret, 800ms steady */
+@keyframes caret-pulse { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.code-caret {
+  display: inline-block; width: 0.55em; height: 1.1em; vertical-align: text-bottom;
+  background: #2DD4A3; box-shadow: 0 0 10px rgba(45, 212, 163, 0.8);
+  animation: caret-pulse 800ms steps(1) infinite;
+}
+
+/* One narrow green light sweep across a panel's border on hover, 180ms */
+.sweep { position: relative; isolation: isolate; }
+.sweep::after {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: linear-gradient(100deg, transparent 0 42%, #2DD4A3 50%, transparent 58% 100%);
+  background-size: 300% 100%; background-position: 100% 0; opacity: 0;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+}
+.sweep:hover::after { animation: sweep 180ms linear forwards; }
+@keyframes sweep {
+  0% { opacity: 1; background-position: 100% 0; }
+  90% { opacity: 1; }
+  100% { opacity: 0; background-position: 0% 0; }
+}
+
+/* Preview blocks enter with a 10px shift over 220ms */
+@keyframes block-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.block-in { animation: block-in 220ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* ---------- Vibe miniatures (live CSS samples) ---------- */
+.vm { position: relative; overflow: hidden; background: var(--bg); color: var(--ink); font-family: var(--font); }
+.vm-title { font-family: var(--display); line-height: 1; }
+.vm-btn { background: var(--accent); color: var(--bg); border-radius: var(--radius); }
+.vm-card { background: var(--surface); border: var(--border) solid color-mix(in srgb, var(--ink) 18%, transparent); border-radius: var(--radius); }
+.vm-line { background: color-mix(in srgb, var(--ink) 22%, transparent); border-radius: 99px; height: 6px; }
+
+.vm-clean-minimal .vm-title { letter-spacing: -0.03em; font-weight: 600; }
+.group:hover .vm-clean-minimal .vm-btn { transform: translateX(4px); }
+.vm-clean-minimal .vm-btn { transition: transform 300ms ease; }
+
+.vm-neo-brutalist .vm-card, .vm-neo-brutalist .vm-btn { border: 3px solid #000; box-shadow: 5px 5px 0 #000; }
+.vm-neo-brutalist .vm-title { text-transform: uppercase; font-weight: 900; }
+.vm-neo-brutalist .vm-btn { transition: transform 90ms steps(2), box-shadow 90ms steps(2); }
+.group:hover .vm-neo-brutalist .vm-btn { transform: translate(5px, 5px); box-shadow: 0 0 0 #000; }
+
+.vm-retro-terminal { text-shadow: 0 0 6px color-mix(in srgb, var(--accent) 70%, transparent); }
+.vm-retro-terminal .vm-line { background: color-mix(in srgb, var(--accent) 45%, transparent); border-radius: 0; }
+.vm-retro-terminal::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,0.25) 0 1px, transparent 1px 3px);
+}
+.vm-retro-terminal .vm-cursor { display: inline-block; width: 0.6em; height: 1em; background: var(--accent); vertical-align: -0.1em; margin-left: 4px; }
+.group:hover .vm-retro-terminal .vm-cursor { animation: caret-pulse 600ms steps(1) infinite; }
+
+.vm-glassy-gradient {
+  background:
+    radial-gradient(60% 70% at 15% 20%, #FF8AD8 0%, transparent 60%),
+    radial-gradient(60% 70% at 85% 30%, #6C8BFF 0%, transparent 60%),
+    radial-gradient(70% 60% at 50% 100%, #36D6C8 0%, transparent 60%), var(--bg);
+  background-size: 140% 140%; background-position: 0% 0%; transition: background-position 1.2s ease;
+}
+.group:hover .vm-glassy-gradient { background-position: 100% 60%; }
+.vm-glassy-gradient .vm-card { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.35); backdrop-filter: blur(10px); }
+.vm-glassy-gradient .vm-btn { background: rgba(255,255,255,0.9); color: #2A1B5C; }
+
+.vm-zine-print .vm-title { text-transform: uppercase; letter-spacing: -0.02em; }
+.vm-zine-print .vm-card { transform: rotate(-2deg); transition: transform 300ms ease; }
+.group:hover .vm-zine-print .vm-card { transform: rotate(1.5deg); }
+.vm-zine-print .vm-stamp { background: var(--accent); color: var(--surface); transform: rotate(4deg); }
+
+.vm-dark-neon .vm-title { text-shadow: 0 0 18px color-mix(in srgb, var(--accent) 65%, transparent); }
+.vm-dark-neon .vm-card { border-color: color-mix(in srgb, var(--accent) 55%, transparent); box-shadow: 0 0 18px -6px var(--accent); transition: box-shadow 400ms ease; }
+.group:hover .vm-dark-neon .vm-card { box-shadow: 0 0 28px -2px var(--accent); }
+.vm-dark-neon .vm-btn { box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 60%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .code-caret { animation: none; }
+  .sweep:hover::after { animation: none; opacity: 0; }
+  .block-in { animation: none; }
+  .vm *, .vm { transition: none !important; animation: none !important; }
+}

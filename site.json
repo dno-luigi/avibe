@@ -1,0 +1,21 @@
+{
+  "name": "Vibe Microsite Builder",
+  "description": "Describe a page in plain words and get Markdown, HTML and CSS back. Edit every line, push the styling, then export or publish a tiny site.",
+  "lang": "en",
+  "favicon": "V",
+  "theme": {
+    "colors": {
+      "bg": "#0B0D10",
+      "surface": "#12161B",
+      "ink": "#EEF2F6",
+      "muted": "#8C96A3",
+      "line": "#28313B",
+      "primary": "#2DD4A3",
+      "primaryInk": "#04140F",
+      "accent": "#A78BFA"
+    },
+    "fonts": { "display": "Onest", "body": "Onest", "mono": "JetBrains Mono" },
+    "radius": "8px",
+    "scheme": "dark"
+  }
+}
