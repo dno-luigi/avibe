@@ -15,7 +15,7 @@
     {
       "binding": "DB",
       "database_name": "vibe-microsite-builder",
-      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID",
+      "database_id": "a27e14f0-281e-4796-a0a8-66820ddc2e67",
       "migrations_dir": "migrations"
     }
   ],
